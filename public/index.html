@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Snowplow Sample Webapp</title>
+        <script type="text/javascript" async=1>
+            ;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
+            p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
+            };p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+            n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","//d1fc8wv8zag5ca.cloudfront.net/2.10.2/sp.js","snowplow"));
+        </script>
+
+
+        <script>
+           // Instantiate new Snowplow tracker with your Snowplow collector DNS host name
+            snowplow("newTracker", "sp", "localhost:9191/api/snowplow", {
+                appId: "sample-app",
+                platform: "web",
+                eventMethod: "post",
+                contexts: {
+                    webPage: true,
+                    performanceTiming: true,
+                    gaCookies: true
+                }
+            });
+        </script>
+
+        <script>
+            // Track Page View
+            snowplow('trackPageView');
+        </script>
+
+
+    </head>
+    <body>
+        <h3>Snowplow Sample Webapp</h3>
+
+        <p>Just by loading this page, a trackPageView event is sent to the dummy collector</p>
+        <p>Check the network tab to see the event going out</p>
+        <p>Check the stdout of the dummy collector to see the event received</p>
+    </body>
+</html>
